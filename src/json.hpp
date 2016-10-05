@@ -3633,7 +3633,10 @@ class basic_json
         // at only works for objects
         if (is_object())
         {
-            assert(m_value.object->find(key) != m_value.object->end());
+            if(m_value.object->find(key) == m_value.object->end()){
+                std::cerr<< "Unknown key : " << key <<std::endl;
+                assert(0);
+            }
             return m_value.object->find(key)->second;
         }
         else
